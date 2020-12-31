@@ -15,33 +15,24 @@ export class GravatarSettingsModal extends SettingsModal {
 		const setting = key => this.setting(`${ID}.${key}`);
 		return [
 			<div className="Form-group">
-				<label>Default (<code>mp</code>, <code>identicon</code>, <code>retro</code>, [URL], ...)</label>
-				<code><input className="FormControl" bidi={setting('default')}/></code>
+				<label>Avatar Privacy Cache Directory (Example: <code>http://localhost/wp-content/uploads/avatar-privacy/cache/identicon</code>)</label>
+				<code><input className="FormControl" bidi={setting('cache_dir')}/></code>
+			</div>
+			,
+			<div className="Form-group">
+				<label>Avatars file extension (Example: <code>.svg</code>)</label>
+				<code><input className="FormControl" bidi={setting('extension')}/></code>
+			</div>
+			,
+			<div className="Form-group">
+				<label>Avatar Privacy Salt (Paste Value of <code>avatar_privacy_salt</code> in Wordpress Options Table)</label>
+				<code><input className="FormControl" bidi={setting('salt')}/></code>
 			</div>
 			,
 			<div className="Form-group">
 				<label className="checkbox">
-					<input type="checkbox" bidi={setting('default_force')}/>
-					Force Default Gravatar Icons
-				</label>
-			</div>
-			,
-			<div className="Form-group">
-				<label>Rating (<code>g</code>, <code>pg</code>, <code>r</code>, <code>x</code>)</label>
-				<code><input className="FormControl" bidi={setting('rating')}/></code>
-			</div>
-			,
-			<div className="Form-group">
-				<label className="checkbox">
-					<input type="checkbox" bidi={setting('disable_local')}/>
-					Disable Local Avatars
-				</label>
-			</div>
-			,
-			<div className="Form-group">
-				<label className="checkbox">
-					<input type="checkbox" bidi={setting('link_new_tab')}/>
-					Gravatar Link New Tab
+					<input type="checkbox" bidi={setting('disable_upload')}/>
+					Disable Avatar Upload
 				</label>
 			</div>
 		];

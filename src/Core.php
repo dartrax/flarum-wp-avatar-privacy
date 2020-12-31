@@ -1,6 +1,6 @@
 <?php
 
-namespace AlexanderOMara\FlarumGravatar;
+namespace Dartrax\FlarumWpAvatarPrivacy;
 
 use Flarum\Frontend\Document;
 use Flarum\Settings\SettingsRepositoryInterface;
@@ -15,14 +15,7 @@ class Core {
 	 *
 	 * @var string
 	 */
-	public const ID = 'alexanderomara-gravatar';
-
-	/**
-	 * Largest usage is 96, use 2x for higher DPX screens.
-	 *
-	 * @var int
-	 */
-	public const SIZE_LARGEST_2X = (96 * 2);
+	public const ID = 'dartrax-wp-avatar-privacy';
 
 	/**
 	 * If an empty string, return null, else return the string.
@@ -52,36 +45,36 @@ class Core {
 	 * Get setting value for this extension.
 	 *
 	 * @param SettingsRepositoryInterface $settings Settings object.
-	 * @return string|null Setting value.
+	 * @return string Setting value.
 	 */
-	public static function settingDefault(
+	public static function settingCacheDir(
 		SettingsRepositoryInterface $settings
 	): string {
-		return static::setting($settings, 'default') ?? '';
+		return static::setting($settings, 'cache_dir') ?? '';
 	}
 
 	/**
 	 * Get setting value for this extension.
 	 *
 	 * @param SettingsRepositoryInterface $settings Settings object.
-	 * @return string|null Setting value.
+	 * @return string Setting value.
 	 */
-	public static function settingDefaultForce(
-		SettingsRepositoryInterface $settings
-	): bool {
-		return (bool)static::setting($settings, 'default_force');
-	}
-
-	/**
-	 * Get setting value for this extension.
-	 *
-	 * @param SettingsRepositoryInterface $settings Settings object.
-	 * @return string|null Setting value.
-	 */
-	public static function settingRating(
+	public static function settingExtension(
 		SettingsRepositoryInterface $settings
 	): string {
-		return static::setting($settings, 'rating') ?? '';
+		return static::setting($settings, 'extension') ?? '';
+	}
+
+	/**
+	 * Get setting value for this extension.
+	 *
+	 * @param SettingsRepositoryInterface $settings Settings object.
+	 * @return string Setting value.
+	 */
+	public static function settingSalt(
+		SettingsRepositoryInterface $settings
+	): string {
+		return static::setting($settings, 'salt') ?? '';
 	}
 
 	/**
@@ -90,42 +83,25 @@ class Core {
 	 * @param SettingsRepositoryInterface $settings Settings object.
 	 * @return string|null Setting value.
 	 */
-	public static function settingDisableLocal(
+	public static function settingDisableUpload(
 		SettingsRepositoryInterface $settings
 	): bool {
-		return (bool)static::setting($settings, 'disable_local');
+		return (bool)static::setting($settings, 'disable_upload');
 	}
 
 	/**
-	 * Get setting value for this extension.
-	 *
-	 * @param SettingsRepositoryInterface $settings Settings object.
-	 * @return string|null Setting value.
-	 */
-	public static function settingLinkNewTab(
-		SettingsRepositoryInterface $settings
-	): bool {
-		return (bool)static::setting($settings, 'link_new_tab');
-	}
-
-	/**
-	 * Generate a gravatar URL for an email address.
+	 * Get the Avatar Privacy cached avatar URL for an email address.
 	 *
 	 * @param string $email Email address.
 	 * @param array|null $opts Optional options.
-	 * @return string Gravatar URL.
+	 * @return string|Null Avatar Privacy cached avatar URL.
 	 */
-	public static function gravatarUrl(string $email, ?array $opts = null) {
-		$opts = $opts === null ? [] : $opts;
-		$hash = md5(strtolower(trim($email)));
-		$query = http_build_query([
-			'd' => static::emptyStringNull($opts['default'] ?? null),
-			'f' => static::emptyStringNull($opts['force'] ?? null),
-			'r' => static::emptyStringNull($opts['rating'] ?? null),
-			's' => static::emptyStringNull($opts['size'] ?? null),
-		]);
-		$sep = strlen($query) ? '?' : '';
-		return "https://www.gravatar.com/avatar/{$hash}{$sep}{$query}";
+	public static function apAvatarUrl(string $email, string $salt, string $cachedir, string $extension): ?string {
+		// Create hash the same way avatar privacy does
+		$hash = hash('sha256', $salt . strtolower(trim($email)));
+		if (strlen($hash) < 3) return '';
+		// build URL the same way avatar privacy does
+        return $cachedir . '/' . $hash[0] . '/' . $hash[1] . '/' . $hash . $extension;
 	}
 
 	/**
@@ -141,18 +117,13 @@ class Core {
 		User $user,
 		?string $existing = null
 	): ?string {
-		// If an existing avatar and local not disabled, use that.
-		if ($existing && !static::settingDisableLocal($settings)) {
+		// If an existing avatar and upload not disabled, use that.
+		if ($existing && !static::settingDisableUpload($settings)) {
 			return $existing;
 		}
 
-		// Create the Gravatar URL.
-		return static::gravatarUrl($user->email, [
-			'default' => static::settingDefault($settings),
-			'force' => static::settingDefaultForce($settings) ? 'y' : '',
-			'rating' => static::settingRating($settings),
-			'size' => static::SIZE_LARGEST_2X
-		]);
+		// Create the Avatar Privacy cached avatar URL.
+		return static::apAvatarUrl($user->email, static::settingSalt($settings), static::settingCacheDir($settings), static::settingExtension($settings));
 	}
 
 	/**
@@ -166,8 +137,7 @@ class Core {
 		SettingsRepositoryInterface $settings
 	): void {
 		$view->payload[static::ID] = [
-			'disableLocal' => static::settingDisableLocal($settings),
-			'linkNewTab' => static::settingLinkNewTab($settings)
+			'disableLocal' => static::settingDisableUpload($settings)
 		];
 	}
 }

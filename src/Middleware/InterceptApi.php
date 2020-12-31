@@ -1,10 +1,10 @@
 <?php
 
-namespace AlexanderOMara\FlarumGravatar\Middleware;
+namespace Dartrax\FlarumWpAvatarPrivacy\Middleware;
 
 use Flarum\Http\RouteCollection;
 
-use AlexanderOMara\FlarumGravatar\Controller;
+use Dartrax\FlarumWpAvatarPrivacy\Controller;
 
 /**
  * InterceptApi middleware.

@@ -8,10 +8,10 @@
 		"avatar",
 		"privacy"
 	],
-	"homepage": "https://github.com/dartrax/flarum-gravatar",
+	"homepage": "https://github.com/dartrax/flarum-wp-avatar-privacy",
 	"support": {
-		"source": "https://github.com/AlexanderOMara/flarum-gravatar",
-		"issues": "https://github.com/AlexanderOMara/flarum-gravatar/issues"
+		"source": "https://github.com/dartrax/flarum-wp-avatar-privacy",
+		"issues": "https://github.com/dartrax/flarum-wp-avatar-privacy/issues"
 	},
 	"license": "MPL-2.0",
 	"type": "flarum-extension",

@@ -1,6 +1,6 @@
 <?php
 
-namespace AlexanderOMara\FlarumGravatar\Extenders;
+namespace Dartrax\FlarumWpAvatarPrivacy\Extenders;
 
 use Flarum\Api\Event\Serializing;
 use Flarum\Api\Serializer\BasicUserSerializer;
@@ -9,7 +9,7 @@ use Flarum\Extension\Extension;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Contracts\Container\Container;
 
-use AlexanderOMara\FlarumGravatar\Core;
+use Dartrax\FlarumWpAvatarPrivacy\Core;
 
 /**
  * BasicUserSerializing class.

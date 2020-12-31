@@ -1,6 +1,6 @@
 <?php
 
-namespace AlexanderOMara\FlarumGravatar\Response;
+namespace Dartrax\FlarumWpAvatarPrivacy\Response;
 
 use Laminas\Diactoros\Response\EmptyResponse;
 

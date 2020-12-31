@@ -1,6 +1,6 @@
 <?php
 
-namespace AlexanderOMara\FlarumGravatar\Middleware;
+namespace Dartrax\FlarumWpAvatarPrivacy\Middleware;
 
 use FastRoute\Dispatcher;
 use Flarum\Http\RouteCollection;
@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 
-use AlexanderOMara\FlarumGravatar\Response\NullResponse;
+use Dartrax\FlarumWpAvatarPrivacy\Response\NullResponse;
 
 /**
  * Intercept middleware.

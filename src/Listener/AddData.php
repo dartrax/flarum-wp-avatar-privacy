@@ -1,12 +1,12 @@
 <?php
 
-namespace AlexanderOMara\FlarumGravatar\Listener;
+namespace Dartrax\FlarumWpAvatarPrivacy\Listener;
 
 use Flarum\Frontend\Document;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-use AlexanderOMara\FlarumGravatar\Core;
+use Dartrax\FlarumWpAvatarPrivacy\Core;
 
 /**
  * Data hook.

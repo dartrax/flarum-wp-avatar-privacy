@@ -2,9 +2,9 @@
 
 use Flarum\Extend;
 
-use AlexanderOMara\FlarumGravatar\Extenders;
-use AlexanderOMara\FlarumGravatar\Listener;
-use AlexanderOMara\FlarumGravatar\Middleware;
+use Dartrax\FlarumWpAvatarPrivacy\Extenders;
+use Dartrax\FlarumWpAvatarPrivacy\Listener;
+use Dartrax\FlarumWpAvatarPrivacy\Middleware;
 
 return [
 	// Client-side code.
