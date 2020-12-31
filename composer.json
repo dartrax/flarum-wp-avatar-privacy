@@ -1,13 +1,14 @@
 {
-	"name": "alexanderomara/flarum-gravatar",
-	"description": "Flarum Gravatar: Use Gravatar for user avatars",
+	"name": "dartrax/flarum-wp-avatar-privacy",
+	"description": "Flarum Wordpress Avatar Privacy: Use the cached avatars from Avatar Privacy for Flarum",
 	"keywords": [
 		"flarum",
-		"gravatar",
+		"wordpress",
 		"user",
-		"avatar"
+		"avatar",
+		"privacy"
 	],
-	"homepage": "https://github.com/AlexanderOMara/flarum-gravatar",
+	"homepage": "https://github.com/dartrax/flarum-gravatar",
 	"support": {
 		"source": "https://github.com/AlexanderOMara/flarum-gravatar",
 		"issues": "https://github.com/AlexanderOMara/flarum-gravatar/issues"
@@ -19,15 +20,15 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"AlexanderOMara\\FlarumGravatar\\": "src/"
+			"Dartrax\\FlarumWpAvatarPrivacy\\": "src/"
 		}
 	},
 	"extra": {
 		"flarum-extension": {
-			"title": "Gravatar",
+			"title": "WP Avatar Privacy",
 			"icon": {
-				"image": "icon.svg",
-				"backgroundColor": "#1E8CBE"
+				"image": "icon.png",
+				"backgroundColor": ""
 			}
 		}
 	},
