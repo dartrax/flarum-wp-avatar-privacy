@@ -2,13 +2,13 @@ import SettingsModal from 'flarum/components/SettingsModal';
 
 import {ID} from '../../config';
 
-export class GravatarSettingsModal extends SettingsModal {
+export class AvatarPrivacySettingsModal extends SettingsModal {
 	className() {
-		return 'GravatarSettingsModal Modal--small';
+		return 'AvatarPrivacySettingsModal Modal';
 	}
 
 	title() {
-		return 'Gravatar Settings';
+		return 'Avatar Privacy Settings';
 	}
 
 	form() {

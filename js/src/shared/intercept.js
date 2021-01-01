@@ -1,78 +1,41 @@
-import {matches, copyElement} from './dom';
+import {matches} from './dom';
 import {data} from './util';
 
-const gravatarAvatarRegex = /^[^/]*\/\/[^/]*gravatar\.com\/avatar\//;
-const gravatarLink = 'https://gravatar.com/';
-const gravatarText = 'Gravatar';
-const uploadIcon = 'fa-external-link-alt';
-
 function updateAvatarEditors() {
-	const {disableLocal} = data();
+	const {disableUpload} = data();
+	const {cacheDir} = data();
 	const editors = document.querySelectorAll('.AvatarEditor');
 	for (let i = editors.length; i--;) {
 		const editor = editors[i];
 		const avatar = editor.querySelector('.Avatar');
-		const upload = editor.querySelector('.item-upload');
-		const remove = editor.querySelector('.item-remove');
-		const gravatarAvatar = avatar && gravatarAvatarRegex.test(avatar.src);
+		const upload = editor.querySelector('.item-upload button');
+		const remove = editor.querySelector('.item-remove button');
+		const wpapAvatar = avatar && avatar.src.includes(cacheDir);
 
-		// Add Gravatar menu item if not already added.
-		if (upload && !editor.querySelector('.item-gravatar')) {
-			const item = copyElement(upload);
-			item.className = item.className.replace(
-				'item-upload',
-				'item-gravatar'
-			);
-			const button = item.querySelector('button');
-			if (button) {
-				button.setAttribute('title', gravatarText);
-				const label = button.querySelector('.Button-label');
-				if (label) {
-					label.textContent = gravatarText;
-				}
-				const icon = button.querySelector('.Button-icon');
-				icon.className = icon.className.replace(
-					/(^|\s)fa-\S+(\s|$)/,
-					`$1${uploadIcon}$2`
-				);
-				if (icon.className.indexOf(uploadIcon) < 0) {
-					icon.className += ` ${uploadIcon}`;
-				}
-			}
-			upload.parentElement.appendChild(item);
+		// Disable remove for Avatar Privacy avatars.
+		if (remove && wpapAvatar) {
+			remove.classList.add('disabled');
+			remove.setAttribute('disabled','');
 		}
 
-		// Only show remove for local avatars.
-		if (remove) {
-			remove.style.display = gravatarAvatar ? 'none' : '';
+		// Disable upload if local avatars disabled.
+		if (upload && disableUpload) {
+			upload.classList.add('disabled');
+			upload.setAttribute('disabled','');
 		}
-
-		// Only show upload if local avatars not disabled.
-		if (upload) {
-			upload.style.display = disableLocal ? 'none' : '';
-		}
+		// Note: We don't remove items to avoid fixing a potentially empty menu.
 	}
 }
 
 function clickHandler(e) {
 	const {target} = e;
 
-	// If click on Gravatar menu item, open link.
-	if (matches(target, '.AvatarEditor .item-gravatar *')) {
-		if (data().linkNewTab) {
-			window.open(gravatarLink, '_blank');
-		}
-		else {
-			location.href = gravatarLink;
-		}
-	}
-
 	// If click to open menu, update the editors.
-	else if (
+	if (
 		matches(target, '.AvatarEditor .Dropdown-toggle') ||
 		matches(target, '.AvatarEditor .Dropdown-toggle *')
 	) {
-		updateAvatarEditors();
+		updateAvatarEditors();		
 	}
 }
 

@@ -121,7 +121,6 @@ class Core {
 		if ($existing && !static::settingDisableUpload($settings)) {
 			return $existing;
 		}
-
 		// Create the Avatar Privacy cached avatar URL.
 		return static::apAvatarUrl($user->email, static::settingSalt($settings), static::settingCacheDir($settings), static::settingExtension($settings));
 	}
@@ -137,7 +136,8 @@ class Core {
 		SettingsRepositoryInterface $settings
 	): void {
 		$view->payload[static::ID] = [
-			'disableLocal' => static::settingDisableUpload($settings)
+			'disableUpload' => static::settingDisableUpload($settings),
+			'cacheDir' => static::settingCacheDir($settings)
 		];
 	}
 }
