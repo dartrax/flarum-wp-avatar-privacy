@@ -27,7 +27,9 @@
 		"flarum-extension": {
 			"title": "WP Avatar Privacy",
 			"icon": {
-				"image": "icon.svg"
+				"image": "icon.svg",
+                "backgroundSize": "cover",
+                "backgroundPosition": "center"
 			}
 		}
 	},
