@@ -9,6 +9,7 @@ Flarum Wordpress Avatar Privacy: Use the cached avatars from Avatar Privacy for 
 
 This Plugin for Flarum uses those cached files to display the same avatars in Flarum. All it needs is the same user email to be able to find the correct image (and the salt value that Avatar Privacy uses to encrypt the image path).
 
+This Plugin is heavily based on the work of [AlexanderOMara](https://github.com/AlexanderOMara/flarum-gravatar).
 Does not change anything in the database (except from the extension's own settings).
 
 # Installation
