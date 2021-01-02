@@ -4,24 +4,29 @@ import {data} from './util';
 function updateAvatarEditors() {
 	const {disableUpload} = data();
 	const {cacheDir} = data();
-	const editors = document.querySelectorAll('.AvatarEditor');
-	for (let i = editors.length; i--;) {
-		const editor = editors[i];
-		const avatar = editor.querySelector('.Avatar');
-		const upload = editor.querySelector('.item-upload button');
-		const remove = editor.querySelector('.item-remove button');
-		const wpapAvatar = avatar && avatar.src.includes(cacheDir);
+	const divEditors = document.querySelectorAll('.AvatarEditor');
+	for (let i = divEditors.length; i--;) {
+		const divEditor = divEditors[i];
+		const imgAvatar = divEditor.querySelector('.Avatar');
+		const btnUpload = divEditor.querySelector('.item-upload button');
+		const btnRemove = divEditor.querySelector('.item-remove button');
+		const isUploadedAvatar = !(imgAvatar && imgAvatar.src.includes(cacheDir));
 
-		// Disable remove for Avatar Privacy avatars.
-		if (remove && wpapAvatar) {
-			remove.classList.add('disabled');
-			remove.setAttribute('disabled','');
+		// Enable remove for custom avatars or disable again.
+		if (btnRemove) {
+			if (isUploadedAvatar) {
+				btnRemove.classList.remove('disabled');
+				btnRemove.removeAttribute('disabled','');
+			} else {
+				btnRemove.classList.add('disabled');
+				btnRemove.setAttribute('disabled','');
+			}
 		}
-
-		// Disable upload if local avatars disabled.
-		if (upload && disableUpload) {
-			upload.classList.add('disabled');
-			upload.setAttribute('disabled','');
+		
+		// Disable upload if custom avatars disabled.
+		if (btnUpload && disableUpload) {
+			btnUpload.classList.add('disabled');
+			btnUpload.setAttribute('disabled','');
 		}
 		// Note: We don't remove items to avoid fixing a potentially empty menu.
 	}

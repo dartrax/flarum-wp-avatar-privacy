@@ -17,9 +17,3 @@ export function matches(element, selector) {
 	)
 		.call(element, selector);
 }
-
-export function copyElement(element) {
-	const div = document.createElement('div');
-	div.innerHTML = element.outerHTML;
-	return div.firstChild;
-}

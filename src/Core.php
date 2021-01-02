@@ -18,16 +18,6 @@ class Core {
 	public const ID = 'dartrax-wp-avatar-privacy';
 
 	/**
-	 * If an empty string, return null, else return the string.
-	 *
-	 * @param string|null $str String value.
-	 * @return string|null The string or null.
-	 */
-	public static function emptyStringNull(?string $str) {
-		return $str === '' ? null : $str;
-	}
-
-	/**
 	 * Get setting value for this extension.
 	 *
 	 * @param SettingsRepositoryInterface $settings Settings object.
