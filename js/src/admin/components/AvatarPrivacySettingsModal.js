@@ -12,7 +12,10 @@ export class AvatarPrivacySettingsModal extends SettingsModal {
 	}
 
 	form() {
-		const setting = key => this.setting(`${ID}.${key}`);
+		const self = this;
+		const setting = (key, type = String) => function() {
+			return type(self.setting(`${ID}.${key}`).apply(this, arguments));
+		};
 		return [
 			<div className="Form-group">
 				<label>Avatar Privacy Cache Directory (Example: <code>http://localhost/wp-content/uploads/avatar-privacy/cache/identicon</code>)</label>
@@ -31,7 +34,7 @@ export class AvatarPrivacySettingsModal extends SettingsModal {
 			,
 			<div className="Form-group">
 				<label className="checkbox">
-					<input type="checkbox" bidi={setting('disable_upload')}/>
+					<input type="checkbox" bidi={setting('disable_upload', Number)}/>
 					Disable Avatar Upload
 				</label>
 			</div>
