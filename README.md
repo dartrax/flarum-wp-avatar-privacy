@@ -1,6 +1,6 @@
 # flarum-wp-avatar-privacy
 
-Integrates cached avatars from the popular Avatar Privacy plugin for Wordpress into Flarum
+Integrates avatars cached by the popular Avatar Privacy plugin for Wordpress into Flarum
 
 
 # Overview
