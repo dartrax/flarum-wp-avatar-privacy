@@ -1,6 +1,6 @@
 {
 	"name": "dartrax/flarum-wp-avatar-privacy",
-	"description": "Integrates cached avatars from the popular Avatar Privacy plugin for WordPress with Flarum",
+	"description": "Integrates avatars cached by the popular Avatar Privacy plugin for Wordpress into Flarum",
 	"keywords": [
 		"flarum",
 		"wordpress",
