@@ -1,6 +1,6 @@
 {
 	"name": "dartrax/flarum-wp-avatar-privacy",
-	"description": "Flarum Wordpress Avatar Privacy: Use the cached avatars from Avatar Privacy for Flarum",
+	"description": "Integrates cached avatars from the popular Avatar Privacy plugin for WordPress with Flarum",
 	"keywords": [
 		"flarum",
 		"wordpress",
@@ -27,9 +27,9 @@
 		"flarum-extension": {
 			"title": "WP Avatar Privacy",
 			"icon": {
-				"image": "icon.svg",
-                "backgroundSize": "cover",
-                "backgroundPosition": "center"
+				"name": "fa fa-user-circle",
+				"backgroundColor": "#0073aa",
+				"color": "#CCE3EE"
 			}
 		}
 	},
