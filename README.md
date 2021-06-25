@@ -25,7 +25,7 @@ If you find a bug or have compatibility issues, please open a ticket under issue
 
 # License
 
-Copyright (c) 2020 Alexander Traxel
+Copyright (c) 2020-2021 Alexander Traxel
 
 Licensed under the Mozilla Public License, v. 2.0.
 
